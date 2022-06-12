@@ -9,7 +9,7 @@ var classcrasy_1_1stream =
     [ "await_ready", "classcrasy_1_1stream.html#a357d9f14f9204a9a518ac247bdbf9e9e", null ],
     [ "await_resume", "classcrasy_1_1stream.html#a8fe62b6c63fdb9dda7361286184b760a", null ],
     [ "await_suspend", "classcrasy_1_1stream.html#af93cb1b736c3a45e583506b17c25c602", null ],
-    [ "foreach", "classcrasy_1_1stream.html#a2f549521b36547abdecf707efb35dcf3", null ],
+    [ "for_each", "classcrasy_1_1stream.html#ace481f836b3ff4cf322c150e9d953a63", null ],
     [ "into_handle", "classcrasy_1_1stream.html#a23dbc12ac4dc2d02d6b10238a74136c8", null ],
     [ "operator=", "classcrasy_1_1stream.html#a99c7bcd31ee1a3ac5c5f8b812da71163", null ],
     [ "operator=", "classcrasy_1_1stream.html#a0c21a1eca8bf8fd2344b5c6183a47d80", null ]

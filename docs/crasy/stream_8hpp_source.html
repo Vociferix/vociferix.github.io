@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('stream_8hpp_source.html',''); initResi
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">bool</span> done_{<span class="keyword">false</span>};</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcrasy_1_1future.html">future</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcrasy_1_1stream.html">stream</a>;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classcrasy_1_1stream.html">stream</a>(std::coroutine_handle&lt;promise_type&gt; handle)</div>
@@ -188,7 +188,7 @@ $(document).ready(function(){initNavTree('stream_8hpp_source.html',''); initResi
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    future&lt;void&gt; <span class="keywordflow">foreach</span> (F&amp;&amp; func) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    future&lt;void&gt; for_each(F&amp;&amp; func) {</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> is_cr = requires(F &amp;&amp; f, option&lt;T&gt; v) {</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            co_await f(*std::move(v));</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        };</div>
@@ -225,7 +225,6 @@ $(document).ready(function(){initNavTree('stream_8hpp_source.html',''); initResi
 <div class="ttc" id="aclasscrasy_1_1stream_html"><div class="ttname"><a href="classcrasy_1_1stream.html">crasy::stream</a></div><div class="ttdef"><b>Definition:</b> stream.hpp:13</div></div>
 <div class="ttc" id="aclasscrasy_1_1option_html"><div class="ttname"><a href="classcrasy_1_1option.html">crasy::option</a></div><div class="ttdef"><b>Definition:</b> option.hpp:18</div></div>
 <div class="ttc" id="aclasscrasy_1_1stream_1_1promise__type_html"><div class="ttname"><a href="classcrasy_1_1stream_1_1promise__type.html">crasy::stream::promise_type</a></div><div class="ttdef"><b>Definition:</b> stream.hpp:17</div></div>
-<div class="ttc" id="aclasscrasy_1_1future_html"><div class="ttname"><a href="classcrasy_1_1future.html">crasy::future</a></div><div class="ttdef"><b>Definition:</b> future.hpp:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

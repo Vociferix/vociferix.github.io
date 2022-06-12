@@ -6,5 +6,5 @@ var classcrasy_1_1stream_1_1promise__type =
     [ "return_void", "classcrasy_1_1stream_1_1promise__type.html#a0e2510b36f8f2261a63e8442233c86a2", null ],
     [ "unhandled_exception", "classcrasy_1_1stream_1_1promise__type.html#ab4eede302908cd119aba0203ac5f07d5", null ],
     [ "yield_value", "classcrasy_1_1stream_1_1promise__type.html#af55fd3ea3d638927c6fa288669e6b3fa", null ],
-    [ "future", "classcrasy_1_1stream_1_1promise__type.html#acba1c206f9365d980493bbd3520adb25", null ]
+    [ "stream", "classcrasy_1_1stream_1_1promise__type.html#a5049f8e6396d9699118836d458746e86", null ]
 ];
