@@ -127,38 +127,38 @@ $(document).ready(function(){initNavTree('shared__mutex_8hpp_source.html',''); i
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>* mtx_;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;};</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classcrasy_1_1shared__mutex.html">   41</a></span>&#160;<span class="keyword">class </span>CRASY_API <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a> {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>(<span class="keyword">const</span> <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>(<a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ~<a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp; operator=(<a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">bool</span> try_lock();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex__lock__future.html">shared_mutex_lock_future</a> lock();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> unlock();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">bool</span> try_lock_shared();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex__lock__shared__future.html">shared_mutex_lock_shared_future</a> lock_shared();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> unlock_shared();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::atomic&lt;std::size_t&gt; state_{0};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classcrasy_1_1lfqueue.html">lfqueue&lt;std::coroutine_handle&lt;&gt;</a>&gt; suspended_;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcrasy_1_1shared__mutex__lock__future.html">shared_mutex_lock_future</a>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcrasy_1_1shared__mutex__lock__shared__future.html">shared_mutex_lock_shared_future</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;} <span class="comment">// namespace crasy</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classcrasy_1_1shared__mutex.html">   42</a></span>&#160;<span class="keyword">class </span>CRASY_API <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>(<span class="keyword">const</span> <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>(<a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    ~<a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp; operator=(<a class="code" href="classcrasy_1_1shared__mutex.html">shared_mutex</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">bool</span> try_lock();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex__lock__future.html">shared_mutex_lock_future</a> lock();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> unlock();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> try_lock_shared();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classcrasy_1_1shared__mutex__lock__shared__future.html">shared_mutex_lock_shared_future</a> lock_shared();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> unlock_shared();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::atomic&lt;std::size_t&gt; state_{0};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classcrasy_1_1lfqueue.html">lfqueue&lt;std::coroutine_handle&lt;&gt;</a>&gt; suspended_;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcrasy_1_1shared__mutex__lock__future.html">shared_mutex_lock_future</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcrasy_1_1shared__mutex__lock__shared__future.html">shared_mutex_lock_shared_future</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace crasy</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclasscrasy_1_1shared__mutex__lock__shared__future_html"><div class="ttname"><a href="classcrasy_1_1shared__mutex__lock__shared__future.html">crasy::shared_mutex_lock_shared_future</a></div><div class="ttdef"><b>Definition:</b> shared_mutex.hpp:30</div></div>
-<div class="ttc" id="aclasscrasy_1_1shared__mutex_html"><div class="ttname"><a href="classcrasy_1_1shared__mutex.html">crasy::shared_mutex</a></div><div class="ttdef"><b>Definition:</b> shared_mutex.hpp:41</div></div>
+<div class="ttc" id="aclasscrasy_1_1shared__mutex_html"><div class="ttname"><a href="classcrasy_1_1shared__mutex.html">crasy::shared_mutex</a></div><div class="ttdef"><b>Definition:</b> shared_mutex.hpp:42</div></div>
 <div class="ttc" id="aclasscrasy_1_1shared__mutex__lock__future_html"><div class="ttname"><a href="classcrasy_1_1shared__mutex__lock__future.html">crasy::shared_mutex_lock_future</a></div><div class="ttdef"><b>Definition:</b> shared_mutex.hpp:17</div></div>
 <div class="ttc" id="aclasscrasy_1_1lfqueue_html"><div class="ttname"><a href="classcrasy_1_1lfqueue.html">crasy::lfqueue</a></div><div class="ttdef"><b>Definition:</b> lfqueue.hpp:15</div></div>
 <!-- start footer part -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>crasy: Main Page</title>
+<title>crasy: Crasy - CoRoutine ASYnc</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,13 +82,50 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">crasy Documentation</div>  </div>
+<div class="title">Crasy - CoRoutine ASYnc </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p>Crasy is a C++ async I/O library built on top of ASIO and based around C++20 coroutines. Additionally, Crasy is inspired by Rust's popular Tokio library. The intent is to enable developers to create "web scale" C++ applications while writing straight-line code.</p>
+<h1><a class="anchor" id="intro_sec"></a>
+Introduction</h1>
+<p>Crasy's two core types are <a class="el" href="classcrasy_1_1executor.html">executor</a> and <a class="el" href="classcrasy_1_1future.html">future</a>. <a class="el" href="classcrasy_1_1executor.html">executor</a> encapsulates the complete async runtime of Crasy, and <a class="el" href="classcrasy_1_1future.html">future</a> is the main building block of async coroutines that hook into Crasy's runtime. The bare minimum for a Crasy application is as follows:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;crasy/crasy.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="classcrasy_1_1future.html">crasy::future&lt;int&gt;</a> async_main() {</div>
+<div class="line">    co_return 0;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code" href="classcrasy_1_1executor.html">crasy::executor</a>().block_on(async_main);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>From here, a Crasy application consists of calls into various async <a class="el" href="index.html#io_sec">I/O interfaces</a> and <a class="el" href="index.html#task_mgmt_sec">task management utilities</a>.</p>
+<h1><a class="anchor" id="io_sec"></a>
+Async I/O Interfaces</h1>
+<ul>
+<li><a class="el" href="classcrasy_1_1udp__socket.html">udp_socket</a></li>
+</ul>
+<h1><a class="anchor" id="task_mgmt_sec"></a>
+Task Management Utilities</h1>
+<ul>
+<li><a class="el" href="group__spawn__grp.html">Task Spawning</a> </li>
+<li><a class="el" href="group__sync__grp.html">Synchronization</a> </li>
+<li><a class="el" href="group__sleep__grp.html">Timed Sleep</a></li>
+</ul>
+<h1><a class="anchor" id="misc_sec"></a>
+Miscellaneous Utilities</h1>
+<ul>
+<li><a class="el" href="classcrasy_1_1future.html">future</a> </li>
+<li><a class="el" href="classcrasy_1_1stream.html">stream</a> </li>
+<li><a class="el" href="classcrasy_1_1option.html">option</a> </li>
+<li><a class="el" href="classcrasy_1_1result.html">result</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclasscrasy_1_1executor_html"><div class="ttname"><a href="classcrasy_1_1executor.html">crasy::executor</a></div><div class="ttdef"><b>Definition:</b> executor.hpp:19</div></div>
+<div class="ttc" id="aclasscrasy_1_1future_html"><div class="ttname"><a href="classcrasy_1_1future.html">crasy::future</a></div><div class="ttdef"><b>Definition:</b> future.hpp:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('spawn__blocking_8hpp_source.html','');
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classcrasy_1_1blocking__join__handle.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;decltype(std::declval&lt;F&gt;</a>()())&gt; spawn_blocking(F&amp;&amp; func);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;decltype(std::declval&lt;F&gt;</a>()())&gt; <a class="code" href="group__spawn__grp.html#gae95da7d02918dbe84c053181a180f95d">spawn_blocking</a>(F&amp;&amp; func);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle</a> {</div>
@@ -226,7 +226,7 @@ $(document).ready(function(){initNavTree('spawn__blocking_8hpp_source.html','');
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    state_base* state_{<span class="keyword">nullptr</span>};</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keyword">friend</span> blocking_join_handle&lt;decltype(std::declval&lt;F&gt;()())&gt; spawn_blocking(</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keyword">friend</span> blocking_join_handle&lt;decltype(std::declval&lt;F&gt;()())&gt; <a class="code" href="classcrasy_1_1blocking__join__handle.html#a18005596f30670ac8555d8e7262d40cb">spawn_blocking</a>(</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        F&amp;&amp;);</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;};</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
@@ -344,24 +344,26 @@ $(document).ready(function(){initNavTree('spawn__blocking_8hpp_source.html','');
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    state_base* state_{<span class="keyword">nullptr</span>};</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keyword">friend</span> <a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;decltype(std::declval&lt;F&gt;</a>()())&gt; spawn_blocking(</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keyword">friend</span> <a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;decltype(std::declval&lt;F&gt;</a>()())&gt; <a class="code" href="classcrasy_1_1blocking__join__handle.html#a18005596f30670ac8555d8e7262d40cb">spawn_blocking</a>(</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        F&amp;&amp;);</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;};</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;decltype(std::declval&lt;F&gt;</a>()())&gt; spawn_blocking(F&amp;&amp; func) {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keyword">using</span> ret_t = decltype(func());</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keyword">using</span> handle_t = <a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;ret_t&gt;</a>;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">using</span> state_t = <span class="keyword">typename</span> handle_t::state_t&lt;F&gt;;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordflow">return</span> handle_t{*<span class="keyword">new</span> state_t(std::forward&lt;F&gt;(func))};</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;}</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;} <span class="comment">// namespace crasy</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
+<div class="line"><a name="l00265"></a><span class="lineno"><a class="line" href="group__spawn__grp.html#gae95da7d02918dbe84c053181a180f95d">  265</a></span>&#160;<a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;decltype(std::declval&lt;F&gt;</a>()())&gt; <a class="code" href="group__spawn__grp.html#gae95da7d02918dbe84c053181a180f95d">spawn_blocking</a>(F&amp;&amp; func) {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">using</span> ret_t = decltype(func());</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keyword">using</span> handle_t = <a class="code" href="classcrasy_1_1blocking__join__handle.html">blocking_join_handle&lt;ret_t&gt;</a>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keyword">using</span> state_t = <span class="keyword">typename</span> handle_t::state_t&lt;F&gt;;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">return</span> handle_t{*<span class="keyword">new</span> state_t(std::forward&lt;F&gt;(func))};</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;}</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;} <span class="comment">// namespace crasy</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclasscrasy_1_1blocking__join__handle_html"><div class="ttname"><a href="classcrasy_1_1blocking__join__handle.html">crasy::blocking_join_handle</a></div><div class="ttdef"><b>Definition:</b> spawn_blocking.hpp:16</div></div>
+<div class="ttc" id="aclasscrasy_1_1blocking__join__handle_html_a18005596f30670ac8555d8e7262d40cb"><div class="ttname"><a href="classcrasy_1_1blocking__join__handle.html#a18005596f30670ac8555d8e7262d40cb">crasy::blocking_join_handle::spawn_blocking</a></div><div class="ttdeci">friend blocking_join_handle&lt; decltype(std::declval&lt; F &gt;)())&gt; spawn_blocking(F &amp;&amp;)</div><div class="ttdoc">Spawns a new blocking task.</div><div class="ttdef"><b>Definition:</b> spawn_blocking.hpp:265</div></div>
+<div class="ttc" id="agroup__spawn__grp_html_gae95da7d02918dbe84c053181a180f95d"><div class="ttname"><a href="group__spawn__grp.html#gae95da7d02918dbe84c053181a180f95d">crasy::spawn_blocking</a></div><div class="ttdeci">blocking_join_handle&lt; decltype(std::declval&lt; F &gt;)())&gt; spawn_blocking(F &amp;&amp;func)</div><div class="ttdoc">Spawns a new blocking task.</div><div class="ttdef"><b>Definition:</b> spawn_blocking.hpp:265</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

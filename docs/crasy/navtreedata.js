@@ -23,9 +23,20 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "crasy", "index.html", [
+    [ "Crasy - CoRoutine ASYnc", "index.html", [
+      [ "Introduction", "index.html#intro_sec", null ],
+      [ "Async I/O Interfaces", "index.html#io_sec", null ],
+      [ "Task Management Utilities", "index.html#task_mgmt_sec", null ],
+      [ "Miscellaneous Utilities", "index.html#misc_sec", null ]
+    ] ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ]
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Related Functions", "functions_rela.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
