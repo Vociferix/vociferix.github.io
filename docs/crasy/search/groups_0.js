@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['synchronization_81',['Synchronization',['../group__sync__grp.html',1,'']]]
+  ['name_20resolution_80',['Name Resolution',['../group__resolve__grp.html',1,'']]]
 ];

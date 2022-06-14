@@ -28,7 +28,6 @@ var annotated_dup =
       [ "shared_mutex_lock_shared_future", "classcrasy_1_1shared__mutex__lock__shared__future.html", "classcrasy_1_1shared__mutex__lock__shared__future" ],
       [ "sleep_future", "classcrasy_1_1sleep__future.html", "classcrasy_1_1sleep__future" ],
       [ "stream", "classcrasy_1_1stream.html", "classcrasy_1_1stream" ],
-      [ "stream_file", "classcrasy_1_1stream__file.html", "classcrasy_1_1stream__file" ],
       [ "udp_socket", "classcrasy_1_1udp__socket.html", "classcrasy_1_1udp__socket" ],
       [ "unique_lock", "classcrasy_1_1unique__lock.html", "classcrasy_1_1unique__lock" ]
     ] ]

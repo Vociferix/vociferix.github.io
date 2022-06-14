@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['promise_5ftype_27',['promise_type',['../classcrasy_1_1future_3_01void_01_4_1_1promise__type.html',1,'crasy::future&lt; void &gt;::promise_type'],['../classcrasy_1_1future_1_1promise__type.html',1,'crasy::future&lt; T &gt;::promise_type'],['../classcrasy_1_1stream_1_1promise__type.html',1,'crasy::stream&lt; T &gt;::promise_type']]]
+  ['ok_5fresult_5fargs_23',['ok_result_args',['../classcrasy_1_1ok__result__args.html',1,'crasy']]],
+  ['option_24',['option',['../classcrasy_1_1option.html',1,'crasy']]],
+  ['option_3c_20awaiter_20_3e_25',['option&lt; awaiter &gt;',['../classcrasy_1_1option.html',1,'crasy']]],
+  ['option_3c_20crasy_3a_3aendpoint_20_3e_26',['option&lt; crasy::endpoint &gt;',['../classcrasy_1_1option.html',1,'crasy']]],
+  ['option_3c_20t_20_26_20_3e_27',['option&lt; T &amp; &gt;',['../classcrasy_1_1option_3_01T_01_6_01_4.html',1,'crasy']]]
 ];
