@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"macro":[["register_ethertype_pdu",""]],"struct":[["Ethertype",""],["EthertypeIter",""],["EthertypeSet",""]]};

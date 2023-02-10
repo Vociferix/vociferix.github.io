@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["CapfileType",""],["Sniffer",""]],"mod":[["pcap",""],["pcapng",""]],"type":[["FileSniffer",""]]};

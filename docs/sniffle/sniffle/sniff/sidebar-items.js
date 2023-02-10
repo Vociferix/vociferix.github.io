@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Error",""]],"macro":[["register_link_layer_pdu",""]],"struct":[["LinkType",""],["LinkTypeTable",""],["RawPacket",""],["Sniffer",""]],"trait":[["Sniff",""]]};

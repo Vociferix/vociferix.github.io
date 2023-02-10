@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":[["ethernet_ii",""],["ethertype",""],["ip_proto",""],["ipv4",""]],"struct":[["RawPdu",""],["Virtual",""]]};

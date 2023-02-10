@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":[["reader",""],["writer",""]],"struct":[["Header",""],["RecordHeader",""],["Recorder",""],["Sniffer",""]],"type":[["FileRecorder",""],["FileSniffer",""]]};

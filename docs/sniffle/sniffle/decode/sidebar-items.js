@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["DecodeError",""]],"fn":[["cast","Decodes a type, T, by directly filling the memory it occupies with the bytes contained in the in the byte slice, up to the size of the resulting type."],["decode",""],["decode_be",""],["decode_le",""]],"trait":[["Decode",""],["DecodeBe",""],["DecodeLe",""]],"type":[["DResult",""]]};
