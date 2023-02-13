@@ -178,13 +178,13 @@
 <span class="kw">pub mod </span>sniff {
     <span class="attr">#[doc(inline)]
     </span><span class="kw">pub use </span>sniffle_core::{
-        register_link_layer_pdu, LinkType, LinkTypeTable, RawPacket, Sniff, Sniffer, Error
+        register_link_layer_pdu, Error, LinkType, LinkTypeTable, RawPacket, Sniff, Sniffer,
     };
 }
 
 <span class="kw">pub mod </span>transmit {
     <span class="attr">#[doc(inline)]
-    </span><span class="kw">pub use </span>sniffle_core::{Transmit, Error};
+    </span><span class="kw">pub use </span>sniffle_core::{Error, Transmit};
 }
 
 <span class="kw">pub mod </span>device {
