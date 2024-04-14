@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['filter_0',['filter',['../classsumty_1_1option.html#a6bd9b001261f3c0f1177da4b807ca304',1,'sumty::option::filter(Pred &amp;&amp;pred) const &amp;'],['../classsumty_1_1option.html#ac62d54b48123e7d80974f63bb988071f',1,'sumty::option::filter(Pred &amp;&amp;pred) &amp;&amp;']]],
+  ['flatten_1',['flatten',['../classsumty_1_1option.html#a991354fa647de4c3bd31e4390c23d310',1,'sumty::option::flatten() const &amp;'],['../classsumty_1_1option.html#abfd0f292932a2593f97cc6c3638a39d7',1,'sumty::option::flatten() &amp;&amp;'],['../classsumty_1_1result.html#a96ca8608fbca4acbef17e6678a2cb158',1,'sumty::result::flatten() const &amp;'],['../classsumty_1_1result.html#ad1f223501a34e06676900e3f27051737',1,'sumty::result::flatten() &amp;&amp;']]],
+  ['flatten_5fall_2',['flatten_all',['../classsumty_1_1option.html#afb73126143d9ed2b1c342e0e8520118f',1,'sumty::option::flatten_all() const &amp;'],['../classsumty_1_1option.html#ad3648c08cef0fa9ee01ee69b3f3acf50',1,'sumty::option::flatten_all() &amp;&amp;'],['../classsumty_1_1result.html#afb73126143d9ed2b1c342e0e8520118f',1,'sumty::result::flatten_all() const &amp;'],['../classsumty_1_1result.html#ad3648c08cef0fa9ee01ee69b3f3acf50',1,'sumty::result::flatten_all() &amp;&amp;']]]
+];
