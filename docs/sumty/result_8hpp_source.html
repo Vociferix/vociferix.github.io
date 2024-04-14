@@ -3593,7 +3593,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03492" name="l03492"></a><span class="lineno"> 3492</span>    <span class="comment">/// assert(res3_flat.is_error());</span></div>
 <div class="line"><a id="l03493" name="l03493"></a><span class="lineno"> 3493</span>    <span class="comment">/// assert(res3_flat.error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03494" name="l03494"></a><span class="lineno"> 3494</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03495" name="l03495"></a><span class="lineno"> 3495</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> flatten() <span class="keyword">const</span>&amp;</div>
+<div class="line"><a id="l03495" name="l03495"></a><span class="lineno"> 3495</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> flatten() <span class="keyword">const</span>&amp;</div>
 <div class="line"><a id="l03496" name="l03496"></a><span class="lineno"> 3496</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l03497" name="l03497"></a><span class="lineno"> 3497</span>        <span class="keyword">requires</span>(detail::is_result_v&lt;T&gt;)</div>
 <div class="line"><a id="l03498" name="l03498"></a><span class="lineno"> 3498</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -3680,7 +3680,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03579" name="l03579"></a><span class="lineno"> 3579</span>    <span class="comment">/// assert(res3_flat.is_error());</span></div>
 <div class="line"><a id="l03580" name="l03580"></a><span class="lineno"> 3580</span>    <span class="comment">/// assert(res3_flat.error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03581" name="l03581"></a><span class="lineno"> 3581</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03582" name="l03582"></a><span class="lineno"> 3582</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> flatten() &amp;&amp;</div>
+<div class="line"><a id="l03582" name="l03582"></a><span class="lineno"> 3582</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> flatten() &amp;&amp;</div>
 <div class="line"><a id="l03583" name="l03583"></a><span class="lineno"> 3583</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l03584" name="l03584"></a><span class="lineno"> 3584</span>        <span class="keyword">requires</span>(detail::is_result_v&lt;T&gt;)</div>
 <div class="line"><a id="l03585" name="l03585"></a><span class="lineno"> 3585</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -3760,7 +3760,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03659" name="l03659"></a><span class="lineno"> 3659</span>    <span class="comment">/// assert(res3_flat.is_error());</span></div>
 <div class="line"><a id="l03660" name="l03660"></a><span class="lineno"> 3660</span>    <span class="comment">/// assert(res3_flat.error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03661" name="l03661"></a><span class="lineno"> 3661</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03662" name="l03662"></a><span class="lineno"> 3662</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1result.html#afb73126143d9ed2b1c342e0e8520118f">flatten_all</a>() <span class="keyword">const</span>&amp; {</div>
+<div class="line"><a id="l03662" name="l03662"></a><span class="lineno"> 3662</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1result.html#afb73126143d9ed2b1c342e0e8520118f">flatten_all</a>() <span class="keyword">const</span>&amp; {</div>
 <div class="line"><a id="l03663" name="l03663"></a><span class="lineno"> 3663</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (detail::is_result_v&lt;T&gt;) {</div>
 <div class="line"><a id="l03664" name="l03664"></a><span class="lineno"> 3664</span>            <span class="keywordflow">return</span> flatten().flatten_all();</div>
 <div class="line"><a id="l03665" name="l03665"></a><span class="lineno"> 3665</span>        } <span class="keywordflow">else</span> {</div>
@@ -3806,7 +3806,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03705" name="l03705"></a><span class="lineno"> 3705</span>    <span class="comment">/// assert(res3_flat.is_error());</span></div>
 <div class="line"><a id="l03706" name="l03706"></a><span class="lineno"> 3706</span>    <span class="comment">/// assert(res3_flat.error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03707" name="l03707"></a><span class="lineno"> 3707</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03708" name="l03708"></a><span class="lineno"> 3708</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1result.html#ad3648c08cef0fa9ee01ee69b3f3acf50">flatten_all</a>() &amp;&amp; {</div>
+<div class="line"><a id="l03708" name="l03708"></a><span class="lineno"> 3708</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1result.html#ad3648c08cef0fa9ee01ee69b3f3acf50">flatten_all</a>() &amp;&amp; {</div>
 <div class="line"><a id="l03709" name="l03709"></a><span class="lineno"> 3709</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (detail::is_result_v&lt;T&gt;) {</div>
 <div class="line"><a id="l03710" name="l03710"></a><span class="lineno"> 3710</span>            <span class="keywordflow">return</span> std::move(*<span class="keyword">this</span>).flatten().flatten_all();</div>
 <div class="line"><a id="l03711" name="l03711"></a><span class="lineno"> 3711</span>        } <span class="keywordflow">else</span> {</div>
@@ -3847,7 +3847,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03746" name="l03746"></a><span class="lineno"> 3746</span>    <span class="comment">/// assert(val3_trans-&gt;is_error());</span></div>
 <div class="line"><a id="l03747" name="l03747"></a><span class="lineno"> 3747</span>    <span class="comment">/// assert(val3_trans-&gt;error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03748" name="l03748"></a><span class="lineno"> 3748</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03749" name="l03749"></a><span class="lineno"> 3749</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() <span class="keyword">const</span>&amp;</div>
+<div class="line"><a id="l03749" name="l03749"></a><span class="lineno"> 3749</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() <span class="keyword">const</span>&amp;</div>
 <div class="line"><a id="l03750" name="l03750"></a><span class="lineno"> 3750</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l03751" name="l03751"></a><span class="lineno"> 3751</span>        <span class="keyword">requires</span>(detail::is_option_v&lt;T&gt;)</div>
 <div class="line"><a id="l03752" name="l03752"></a><span class="lineno"> 3752</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -3897,7 +3897,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03796" name="l03796"></a><span class="lineno"> 3796</span>    <span class="comment">/// assert(val3_trans-&gt;is_error());</span></div>
 <div class="line"><a id="l03797" name="l03797"></a><span class="lineno"> 3797</span>    <span class="comment">/// assert(val3_trans-&gt;error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03798" name="l03798"></a><span class="lineno"> 3798</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03799" name="l03799"></a><span class="lineno"> 3799</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() &amp;&amp;</div>
+<div class="line"><a id="l03799" name="l03799"></a><span class="lineno"> 3799</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() &amp;&amp;</div>
 <div class="line"><a id="l03800" name="l03800"></a><span class="lineno"> 3800</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l03801" name="l03801"></a><span class="lineno"> 3801</span>        <span class="keyword">requires</span>(detail::is_option_v&lt;T&gt;)</div>
 <div class="line"><a id="l03802" name="l03802"></a><span class="lineno"> 3802</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -3935,7 +3935,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03834" name="l03834"></a><span class="lineno"> 3834</span>    <span class="comment">/// assert(res2_inv.is_ok());</span></div>
 <div class="line"><a id="l03835" name="l03835"></a><span class="lineno"> 3835</span>    <span class="comment">/// assert(*res2_inv == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03836" name="l03836"></a><span class="lineno"> 3836</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03837" name="l03837"></a><span class="lineno"> 3837</span>    <span class="keyword">constexpr</span> result&lt;E, T&gt; <a class="code hl_function" href="classsumty_1_1result.html#a805656c75187a25047a75a2f209aee88">invert</a>() <span class="keyword">const</span>&amp; {</div>
+<div class="line"><a id="l03837" name="l03837"></a><span class="lineno"> 3837</span>    [[nodiscard]] <span class="keyword">constexpr</span> result&lt;E, T&gt; <a class="code hl_function" href="classsumty_1_1result.html#a805656c75187a25047a75a2f209aee88">invert</a>() <span class="keyword">const</span>&amp; {</div>
 <div class="line"><a id="l03838" name="l03838"></a><span class="lineno"> 3838</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classsumty_1_1result.html#aecdb1f9707ee1f7b6b49ff2b0dea34a9">is_ok</a><a class="code hl_function" href="classsumty_1_1result.html#aecdb1f9707ee1f7b6b49ff2b0dea34a9">(</a><a class="code hl_function" href="classsumty_1_1result.html#aecdb1f9707ee1f7b6b49ff2b0dea34a9">)</a>) {</div>
 <div class="line"><a id="l03839" name="l03839"></a><span class="lineno"> 3839</span>            <span class="keywordflow">return</span> result&lt;E, T&gt;{in_place_error, res_[0]};</div>
 <div class="line"><a id="l03840" name="l03840"></a><span class="lineno"> 3840</span>        } <span class="keywordflow">else</span> {</div>
@@ -3964,7 +3964,7 @@ $(document).ready(function(){initNavTree('result_8hpp_source.html',''); initResi
 <div class="line"><a id="l03863" name="l03863"></a><span class="lineno"> 3863</span>    <span class="comment">/// assert(res2_inv.is_ok());</span></div>
 <div class="line"><a id="l03864" name="l03864"></a><span class="lineno"> 3864</span>    <span class="comment">/// assert(*res2_inv == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03865" name="l03865"></a><span class="lineno"> 3865</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03866" name="l03866"></a><span class="lineno"> 3866</span>    <span class="keyword">constexpr</span> result&lt;E, T&gt; <a class="code hl_function" href="classsumty_1_1result.html#a3ad5979c728856e9d92461551c3e1797">invert</a>() &amp;&amp; {</div>
+<div class="line"><a id="l03866" name="l03866"></a><span class="lineno"> 3866</span>    [[nodiscard]] <span class="keyword">constexpr</span> result&lt;E, T&gt; <a class="code hl_function" href="classsumty_1_1result.html#a3ad5979c728856e9d92461551c3e1797">invert</a>() &amp;&amp; {</div>
 <div class="line"><a id="l03867" name="l03867"></a><span class="lineno"> 3867</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classsumty_1_1result.html#aecdb1f9707ee1f7b6b49ff2b0dea34a9">is_ok</a><a class="code hl_function" href="classsumty_1_1result.html#aecdb1f9707ee1f7b6b49ff2b0dea34a9">(</a><a class="code hl_function" href="classsumty_1_1result.html#aecdb1f9707ee1f7b6b49ff2b0dea34a9">)</a>) {</div>
 <div class="line"><a id="l03868" name="l03868"></a><span class="lineno"> 3868</span>            <span class="keywordflow">return</span> result&lt;E, T&gt;{in_place_error, std::move(res_[0])};</div>
 <div class="line"><a id="l03869" name="l03869"></a><span class="lineno"> 3869</span>        } <span class="keywordflow">else</span> {</div>

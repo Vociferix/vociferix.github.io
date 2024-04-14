@@ -2926,7 +2926,7 @@ $(document).ready(function(){initNavTree('option_8hpp_source.html',''); initResi
 <div class="line"><a id="l02825" name="l02825"></a><span class="lineno"> 2825</span>    <span class="comment">/// assert(opt3_flat.is_some());</span></div>
 <div class="line"><a id="l02826" name="l02826"></a><span class="lineno"> 2826</span>    <span class="comment">/// assert(*opt3_flat = 42);</span></div>
 <div class="line"><a id="l02827" name="l02827"></a><span class="lineno"> 2827</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l02828" name="l02828"></a><span class="lineno"> 2828</span>    <span class="keyword">constexpr</span> T flatten() <span class="keyword">const</span>&amp;</div>
+<div class="line"><a id="l02828" name="l02828"></a><span class="lineno"> 2828</span>    [[nodiscard]] <span class="keyword">constexpr</span> T flatten() <span class="keyword">const</span>&amp;</div>
 <div class="line"><a id="l02829" name="l02829"></a><span class="lineno"> 2829</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l02830" name="l02830"></a><span class="lineno"> 2830</span>        <span class="keyword">requires</span>(detail::is_option_v&lt;T&gt;)</div>
 <div class="line"><a id="l02831" name="l02831"></a><span class="lineno"> 2831</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -2963,7 +2963,7 @@ $(document).ready(function(){initNavTree('option_8hpp_source.html',''); initResi
 <div class="line"><a id="l02862" name="l02862"></a><span class="lineno"> 2862</span>    <span class="comment">/// assert(opt3_flat.is_some());</span></div>
 <div class="line"><a id="l02863" name="l02863"></a><span class="lineno"> 2863</span>    <span class="comment">/// assert(*opt3_flat = 42);</span></div>
 <div class="line"><a id="l02864" name="l02864"></a><span class="lineno"> 2864</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l02865" name="l02865"></a><span class="lineno"> 2865</span>    <span class="keyword">constexpr</span> T flatten() &amp;&amp;</div>
+<div class="line"><a id="l02865" name="l02865"></a><span class="lineno"> 2865</span>    [[nodiscard]] <span class="keyword">constexpr</span> T flatten() &amp;&amp;</div>
 <div class="line"><a id="l02866" name="l02866"></a><span class="lineno"> 2866</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l02867" name="l02867"></a><span class="lineno"> 2867</span>        <span class="keyword">requires</span>(detail::is_option_v&lt;T&gt;)</div>
 <div class="line"><a id="l02868" name="l02868"></a><span class="lineno"> 2868</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -3001,7 +3001,7 @@ $(document).ready(function(){initNavTree('option_8hpp_source.html',''); initResi
 <div class="line"><a id="l02900" name="l02900"></a><span class="lineno"> 2900</span>    <span class="comment">/// assert(opt3_flat.is_none());</span></div>
 <div class="line"><a id="l02901" name="l02901"></a><span class="lineno"> 2901</span>    <span class="comment">/// assert(opt4_flat.is_none());</span></div>
 <div class="line"><a id="l02902" name="l02902"></a><span class="lineno"> 2902</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l02903" name="l02903"></a><span class="lineno"> 2903</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1option.html#afb73126143d9ed2b1c342e0e8520118f">flatten_all</a>() <span class="keyword">const</span>&amp; {</div>
+<div class="line"><a id="l02903" name="l02903"></a><span class="lineno"> 2903</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1option.html#afb73126143d9ed2b1c342e0e8520118f">flatten_all</a>() <span class="keyword">const</span>&amp; {</div>
 <div class="line"><a id="l02904" name="l02904"></a><span class="lineno"> 2904</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (detail::is_option_v&lt;T&gt;) {</div>
 <div class="line"><a id="l02905" name="l02905"></a><span class="lineno"> 2905</span>            <span class="keywordflow">return</span> flatten().flatten_all();</div>
 <div class="line"><a id="l02906" name="l02906"></a><span class="lineno"> 2906</span>        } <span class="keywordflow">else</span> {</div>
@@ -3039,7 +3039,7 @@ $(document).ready(function(){initNavTree('option_8hpp_source.html',''); initResi
 <div class="line"><a id="l02938" name="l02938"></a><span class="lineno"> 2938</span>    <span class="comment">/// assert(opt3_flat.is_none());</span></div>
 <div class="line"><a id="l02939" name="l02939"></a><span class="lineno"> 2939</span>    <span class="comment">/// assert(opt4_flat.is_none());</span></div>
 <div class="line"><a id="l02940" name="l02940"></a><span class="lineno"> 2940</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l02941" name="l02941"></a><span class="lineno"> 2941</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1option.html#ad3648c08cef0fa9ee01ee69b3f3acf50">flatten_all</a>() &amp;&amp; {</div>
+<div class="line"><a id="l02941" name="l02941"></a><span class="lineno"> 2941</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="classsumty_1_1option.html#ad3648c08cef0fa9ee01ee69b3f3acf50">flatten_all</a>() &amp;&amp; {</div>
 <div class="line"><a id="l02942" name="l02942"></a><span class="lineno"> 2942</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (detail::is_option_v&lt;T&gt;) {</div>
 <div class="line"><a id="l02943" name="l02943"></a><span class="lineno"> 2943</span>            <span class="keywordflow">return</span> std::move(*<span class="keyword">this</span>).flatten().flatten_all();</div>
 <div class="line"><a id="l02944" name="l02944"></a><span class="lineno"> 2944</span>        } <span class="keywordflow">else</span> {</div>
@@ -3159,7 +3159,7 @@ $(document).ready(function(){initNavTree('option_8hpp_source.html',''); initResi
 <div class="line"><a id="l03058" name="l03058"></a><span class="lineno"> 3058</span>    <span class="comment">/// assert(val3_trans.is_error());</span></div>
 <div class="line"><a id="l03059" name="l03059"></a><span class="lineno"> 3059</span>    <span class="comment">/// assert(val3_trans.error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03060" name="l03060"></a><span class="lineno"> 3060</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03061" name="l03061"></a><span class="lineno"> 3061</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() <span class="keyword">const</span>&amp;</div>
+<div class="line"><a id="l03061" name="l03061"></a><span class="lineno"> 3061</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() <span class="keyword">const</span>&amp;</div>
 <div class="line"><a id="l03062" name="l03062"></a><span class="lineno"> 3062</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l03063" name="l03063"></a><span class="lineno"> 3063</span>        <span class="keyword">requires</span>(detail::is_result_v&lt;T&gt;)</div>
 <div class="line"><a id="l03064" name="l03064"></a><span class="lineno"> 3064</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
@@ -3208,7 +3208,7 @@ $(document).ready(function(){initNavTree('option_8hpp_source.html',''); initResi
 <div class="line"><a id="l03107" name="l03107"></a><span class="lineno"> 3107</span>    <span class="comment">/// assert(val3_trans.is_error());</span></div>
 <div class="line"><a id="l03108" name="l03108"></a><span class="lineno"> 3108</span>    <span class="comment">/// assert(val3_trans.error() == &quot;oh no&quot;);</span></div>
 <div class="line"><a id="l03109" name="l03109"></a><span class="lineno"> 3109</span>    <span class="comment">/// ```</span></div>
-<div class="line"><a id="l03110" name="l03110"></a><span class="lineno"> 3110</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() &amp;&amp;</div>
+<div class="line"><a id="l03110" name="l03110"></a><span class="lineno"> 3110</span>    [[nodiscard]] <span class="keyword">constexpr</span> <span class="keyword">auto</span> transpose() &amp;&amp;</div>
 <div class="line"><a id="l03111" name="l03111"></a><span class="lineno"> 3111</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">DOXYGEN</span></div>
 <div class="line"><a id="l03112" name="l03112"></a><span class="lineno"> 3112</span>        <span class="keyword">requires</span>(detail::is_result_v&lt;T&gt;)</div>
 <div class="line"><a id="l03113" name="l03113"></a><span class="lineno"> 3113</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
