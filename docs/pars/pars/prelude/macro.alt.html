@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Creates a parser that will match exactly one of its arguments."><title>alt in pars::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="pars" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../pars/index.html">pars</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">alt</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In pars::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><span class="rustdoc-breadcrumbs"><a href="../index.html">pars</a>::<wbr><a href="index.html">prelude</a></span><h1>Macro <span class="macro">alt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/pars_macros/lib.rs.html#99">Source</a> </span></div><pre class="rust item-decl"><code>alt!() { <span class="comment">/* proc-macro */</span> }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Creates a parser that will match exactly one of its arguments.</p>
+<p><a href="macro.alt.html" title="macro pars::prelude::alt"><code>alt</code></a> will accept any number of parsers as arguments. The returned parser will
+attempt to parse with each argument, preferring the first argument, then second,
+and so on. Each alternate parser must produce the same output for a given type of
+input.</p>
+<p><a href="macro.alt.html" title="macro pars::prelude::alt"><code>alt</code></a> will attempt to parse each alternate completely before moving on to the
+next alternate. Thus, <a href="macro.alt.html" title="macro pars::prelude::alt"><code>alt</code></a> introduces backtracking into the parser. Depending
+on how each alternate parses, <a href="macro.alt.html" title="macro pars::prelude::alt"><code>alt</code></a> can become quite expensive, since each
+alternate may parse all the way to the end of input before returning a parse
+failure. That said, most use cases are not likely to have this worst case
+performance.</p>
+<p>When backtracking is unacceptable, <a href="../basic/fn.flat_map.html" title="fn pars::basic::flat_map"><code>flat_map</code></a> or <a href="../basic/fn.try_flat_map.html" title="fn pars::basic::try_flat_map"><code>try_flat_map</code></a> may be a
+viable alternative. See the examples
+<a href="https://github.com/Vociferix/pars/blob/master/src/msgpack.rs"><code>msgpack.rs</code></a> and
+<a href="https://github.com/Vociferix/pars/blob/master/src/msgpack_alt.rs"><code>msgpack_alt.rs</code></a>
+for a comparison of using <a href="macro.alt.html" title="macro pars::prelude::alt"><code>alt</code></a> versus <a href="../basic/fn.try_flat_map.html" title="fn pars::basic::try_flat_map"><code>try_flat_map</code></a>.</p>
+<p>Also see <a href="../basic/fn.either.html" title="fn pars::basic::either"><code>either</code></a>, which <a href="macro.alt.html" title="macro pars::prelude::alt"><code>alt</code></a> is essentially a variadic version of, and in fact,
+is implemented in terms of.</p>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>pars::{
+    basic::alt,
+    unicode::{UnicodeInput <span class="kw">as </span>UInput, PResult, strict::verbatim},
+    Parse, Success,
+};
+
+<span class="kw">fn </span>my_parser&lt;I: UInput&gt;(input: I) -&gt; PResult&lt;(), I&gt; {
+    <span class="comment">// match "a", "b", or "c"
+    </span><span class="macro">alt!</span>(
+        verbatim(<span class="string">"a"</span>).with_value(()),
+        verbatim(<span class="string">"b"</span>).with_value(()),
+        verbatim(<span class="string">"c"</span>).with_value(()),
+    )
+    .parse(input)
+}
+
+<span class="macro">assert!</span>(my_parser.parse(<span class="string">"be kind"</span>) == <span class="prelude-val">Ok</span>(Success((), <span class="string">"e kind"</span>)));</code></pre></div>
+</div></details></section></div></main></body></html>

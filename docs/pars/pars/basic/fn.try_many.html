@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Creates a parser that is repeated a number of times within a range."><title>try_many in pars::basic - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="pars" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../pars/index.html">pars</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">try_<wbr>many</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In pars::<wbr>basic</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><span class="rustdoc-breadcrumbs"><a href="../index.html">pars</a>::<wbr><a href="index.html">basic</a></span><h1>Function <span class="fn">try_many</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/pars/basic.rs.html#2680-2693">Source</a> </span></div><pre class="rust item-decl"><code>pub const fn try_many&lt;P, R, F, O, S, I&gt;(
+    parser: P,
+    range: R,
+    collect_fn: F,
+) -&gt; impl <a class="trait" href="../trait.Parse.html" title="trait pars::Parse">Parse</a>&lt;I, Parsed = O, Error = P::<a class="associatedtype" href="../trait.Parse.html#associatedtype.Error" title="type pars::Parse::Error">Error</a>&gt;<div class="where">where
+    P: <a class="trait" href="../trait.Parse.html" title="trait pars::Parse">Parse</a>&lt;I&gt;,
+    R: <a class="trait" href="https://doc.rust-lang.org/1.84.1/core/ops/range/trait.RangeBounds.html" title="trait core::ops::range::RangeBounds">RangeBounds</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.84.1/core/primitive.usize.html">usize</a>&gt;,
+    S: <a class="trait" href="../trait.ErrorSeed.html" title="trait pars::ErrorSeed">ErrorSeed</a>&lt;I, P::<a class="associatedtype" href="../trait.Parse.html#associatedtype.Error" title="type pars::Parse::Error">Error</a>&gt;,
+    F: for&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/1.84.1/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="struct" href="struct.ManyIter.html" title="struct pars::basic::ManyIter">ManyIter</a>&lt;'a, P, I&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.84.1/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;O, S&gt;,
+    I: <a class="trait" href="../trait.Input.html" title="trait pars::Input">Input</a>,</div></code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Creates a parser that is repeated a number of times within a range.</p>
+<p><a href="fn.try_many.html" title="fn pars::basic::try_many"><code>try_many</code></a> produces a parser that will apply <code>parser</code> repeatedly. The
+number of times <code>parser</code> will be applied is defined by <code>range</code>. For example,
+if <code>range</code> is <code>3..=5</code>, <code>parser</code> will be applied at least 3 times, and will
+be applied up to 5 times if possible. If <code>parser</code> fails before parsing 3
+times (or whatever lower bound applies to <code>range</code>, if any), a parsing error
+is returned from the new parser. Once the upper bound is met (again, if any)
+parsing automatically ends successfully. <code>parser</code> returning a parsing error
+after meeting the lower bound also ends parsing for the new parser.</p>
+<p>The values produced by <code>parser</code> are passed to <code>collect_fn</code> in the form of
+an iterator, <a href="struct.ManyIter.html" title="struct pars::basic::ManyIter"><code>ManyIter</code></a>. If <code>collect_fn</code> returns an <a href="https://doc.rust-lang.org/1.84.1/core/result/enum.Result.html#variant.Ok" title="variant core::result::Result::Ok"><code>Ok</code></a> value, the
+contained value becomes the parsed value of the new parser. If <code>collect_fn</code>
+returns an <a href="https://doc.rust-lang.org/1.84.1/core/result/enum.Result.html#variant.Err" title="variant core::result::Result::Err"><code>Err</code></a>, that gets returned as a parsing error via <a href="../trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a>.</p>
+<p>Note that the returned new parser does not allocate. Values produced by
+the iterator are obtained on demand by applying <code>parser</code> each time
+<a href="https://doc.rust-lang.org/1.84.1/core/iter/traits/iterator/trait.Iterator.html#tymethod.next" title="method core::iter::traits::iterator::Iterator::next"><code>Iterator::next</code></a> is called. Allocation will only occur if the user
+provided function <code>collect_fn</code> allocates to produce its result.</p>
+<p>Also note that <a href="fn.try_many.html" title="fn pars::basic::try_many"><code>try_many</code></a> is a more generalized version of <a href="fn.try_many0.html" title="fn pars::basic::try_many0"><code>try_many0</code></a>,
+<a href="fn.try_many1.html" title="fn pars::basic::try_many1"><code>try_many1</code></a> and <a href="fn.try_repeated.html" title="fn pars::basic::try_repeated"><code>try_repeated</code></a>. If <code>range</code> is <code>..</code>, the returned parser
+is equivalent to a <a href="fn.try_many0.html" title="fn pars::basic::try_many0"><code>try_many0</code></a> parser. If <code>range</code> is <code>1..</code>, the returned
+parser is equivalent to a <a href="fn.try_many1.html" title="fn pars::basic::try_many1"><code>try_many1</code></a> parser. If <code>range</code> is <code>count..=count</code>,
+the returned parser is equivalent to a [<code>try_ repeated</code>] parser with a size of
+<code>count</code>.</p>
+<p>See also <a href="../trait.Parse.html#method.try_many" title="method pars::Parse::try_many"><code>Parse::try_many</code></a>.</p>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>my_parser(input: <span class="kw-2">&amp;</span>[u8]) -&gt; PResult&lt;u32, <span class="kw-2">&amp;</span>[u8]&gt; {
+    try_many(bytes::u8, <span class="number">2</span>..=<span class="number">4</span>, |iter| {
+        <span class="kw">let </span>sum = iter.map(|byte| byte <span class="kw">as </span>u32).sum();
+        <span class="comment">// only allow even sums
+        </span><span class="kw">if </span>sum % <span class="number">2 </span>== <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(sum)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(ErrorKind::InvalidInput)
+        }
+    }).parse(input)
+}
+
+<span class="macro">assert!</span>(my_parser.parse(<span class="string">b"\x01\x02\x03\x04\x05"</span>) == <span class="prelude-val">Ok</span>(Success(<span class="number">10</span>, <span class="string">b"\x05"</span>)));
+<span class="macro">assert!</span>(my_parser.parse(<span class="string">b"\x01\x02\x03"</span>) == <span class="prelude-val">Ok</span>(Success(<span class="number">6</span>, <span class="string">b""</span>)));
+<span class="macro">assert!</span>(my_parser.parse(<span class="string">b"\x01\x02"</span>).is_err());
+<span class="macro">assert!</span>(my_parser.parse(<span class="string">b"\x01"</span>).is_err());
+<span class="macro">assert!</span>(my_parser.parse(<span class="string">b""</span>).is_err());</code></pre></div>
+</div></details></section></div></main></body></html>

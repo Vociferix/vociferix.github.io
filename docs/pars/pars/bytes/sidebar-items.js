@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ErrorKind"],"fn":["ascii_char","i8","u8","utf8_char","verbatim"],"macro":["regex"],"mod":["be","le"],"struct":["Error"],"trait":["ByteInput","ByteSymbol"],"type":["PResult"]};

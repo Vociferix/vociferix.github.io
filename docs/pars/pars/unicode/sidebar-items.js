@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ErrorKind"],"mod":["lossy","prop","strict"],"struct":["Error","LocInput"],"trait":["Property","UnicodeInput","UnicodeSymbol"],"type":["PResult"]};

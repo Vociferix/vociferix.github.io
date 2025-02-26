@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["char","char_with_prop","grapheme_cluster","line","verbatim"],"macro":["regex"],"struct":["CharWithPropParser"]};

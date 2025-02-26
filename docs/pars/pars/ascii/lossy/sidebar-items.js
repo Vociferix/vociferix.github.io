@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["char","char_with_prop","line","verbatim"],"macro":["regex"]};

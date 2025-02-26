@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["Alphabetic","Alphanumeric","And","Blank","Control","Digit","Graphic","HexDigit","Lowercase","Not","OctDigit","Or","Printable","Punctuation","Uppercase","Whitespace"]};

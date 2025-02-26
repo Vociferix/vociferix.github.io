@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Parser-combinator library for Rust."><title>pars - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="pars" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../static.files/storage-59e33391.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../pars/index.html">pars</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#parser-combinator-library-for-rust" title="Parser-combinator library for Rust.">Parser-combinator library for Rust.</a></li><li><a href="#contents" title="Contents">Contents</a></li><li><a href="#example" title="Example">Example</a></li><li><a href="#parser-combinators" title="Parser Combinators">Parser Combinators</a></li><li><a href="#parser-input" title="Parser Input">Parser Input</a></li><li><a href="#defining-a-parser" title="Defining a Parser">Defining a Parser</a></li><li><a href="#defining-a-combinator" title="Defining a Combinator">Defining a Combinator</a></li><li><a href="#parsing-errors" title="Parsing Errors">Parsing Errors</a></li><li><a href="#features" title="Features">Features</a></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#enums" title="Enums">Enums</a></li><li><a href="#traits" title="Traits">Traits</a></li><li><a href="#types" title="Type Aliases">Type Aliases</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>pars</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/pars/lib.rs.html#1-1079">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="parser-combinator-library-for-rust"><a class="doc-anchor" href="#parser-combinator-library-for-rust">§</a>Parser-combinator library for Rust.</h2>
+<p><code>pars</code> is a general purpose parser-combinator library, with support for <code>no_std</code>.
+<code>pars</code> is heavily inspired by <a href="https://crates.io/crates/nom"><code>nom</code></a>, but <code>pars</code>
+aims to generalize more over different kinds of input and provide more
+Rust-idiomatic and ergonomic combinators. <code>pars</code> also provides direct support for
+higher level concepts such as Unicode and regular expressions.</p>
+<h2 id="contents"><a class="doc-anchor" href="#contents">§</a>Contents</h2>
+<ul>
+<li><a href="#example">Example</a> - Jump directly into an example parser implementation</li>
+<li><a href="#parser-combinators">Parser Combinators</a> - A brief introduction to
+parser-combinators</li>
+<li><a href="#parser-input">Parser Input</a> - An overview of how parseable input works in
+<code>pars</code></li>
+<li><a href="#defining-a-parser">Defining a Parser</a> - How to write your own parser</li>
+<li><a href="#defining-a-combinator">Defining a Combinator</a> - How to write your own
+combinator</li>
+<li><a href="#parsing-errors">Parsing Errors</a> - The <code>pars</code> error system and how to define
+your own error types</li>
+<li><a href="#features">Features</a> - Available crate features</li>
+</ul>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>pars::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>pars::ErrorKind;
+<span class="kw">use </span>pars::unicode::{
+    strict::{char <span class="kw">as </span>uchar, verbatim},
+    UnicodeInput <span class="kw">as </span>UInput, PResult,
+};
+
+<span class="attr">#[derive(Debug, PartialEq)]
+</span><span class="kw">struct </span>Color {
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+
+<span class="kw">fn </span>hex_digit&lt;I: UInput&gt;(input: I) -&gt; PResult&lt;u8, I&gt; {
+    uchar.try_map(|ch| <span class="kw">match </span>ch {
+        <span class="string">'0'</span>..=<span class="string">'9' </span>=&gt; <span class="prelude-val">Ok</span>((ch <span class="kw">as </span>u8) - <span class="string">b'0'</span>),
+        <span class="string">'a'</span>..=<span class="string">'f' </span>=&gt; <span class="prelude-val">Ok</span>((ch <span class="kw">as </span>u8) - <span class="string">b'a' </span>+ <span class="number">10</span>),
+        <span class="string">'A'</span>..=<span class="string">'F' </span>=&gt; <span class="prelude-val">Ok</span>((ch <span class="kw">as </span>u8) - <span class="string">b'A' </span>+ <span class="number">10</span>),
+        <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(ErrorKind::InvalidInput),
+    }).parse(input)
+}
+
+<span class="kw">fn </span>hex_byte&lt;I: UInput&gt;(input: I) -&gt; PResult&lt;u8, I&gt; {
+    hex_digit.array().map(|[d0, d1]| (d0 &lt;&lt; <span class="number">4</span>) | d1).parse(input)
+}
+
+<span class="kw">fn </span>hex_color&lt;I: UInput&gt;(input: I) -&gt; PResult&lt;Color, I&gt; {
+    prefix(verbatim(<span class="string">"#"</span>), hex_byte.array())
+        .map(|[r, g, b]| Color {
+            red: r,
+            green: g,
+            blue: b,
+        })
+        .parse(input)
+}
+
+<span class="kw">fn </span>main() {
+    <span class="macro">assert_eq!</span>(
+        hex_color.parse(<span class="string">"#2F14DF"</span>),
+        <span class="prelude-val">Ok</span>(Success(Color {
+            red: <span class="number">0x2f</span>,
+            green: <span class="number">0x14</span>,
+            blue: <span class="number">0xdf</span>,
+        }, <span class="string">""</span>))
+    );
+}</code></pre></div>
+<h2 id="parser-combinators"><a class="doc-anchor" href="#parser-combinators">§</a>Parser Combinators</h2>
+<p>Classically, parsers are defined as a grammar that parser generators, such as
+<code>lex</code> and <code>yacc</code>, will transpile to an implementation of a state machine. This
+generally produces the most efficient parsers, to be sure. Some popular parser
+generators for Rust include <a href="https://crates.io/crates/pest"><code>pest</code></a>,
+<a href="https://crates.io/crates/lalrpop"><code>LALRPOP</code></a>, and
+<a href="https://crates.io/crates/peg"><code>peg</code></a>.</p>
+<p>A parser combinator, on the other hand, is generally a library of parser building
+blocks for building a recursive descent parser. The trade off here is that we
+gain the ability to write plain Rust (in the case of <code>pars</code>) as well the ability
+to easily reuse parsers to build more complex parsers, but at the costs associated
+with recursive descent parsers. The downside of recursive descent parsers is that
+there is no limit to how far back the parser may need to backtrack in the input
+stream during parsing, and thus are generally not as efficient as parser produced
+by parser generators. But note that, for example, most practical compilers are
+implemented with a recursive descent parser because of their power and
+flexibility, despite not being the most efficient approach. Also note that in
+some cases, it is possible define a complex parser without any backtracking with
+a little extra effort. See the example
+<a href="https://github.com/Vociferix/pars/blob/master/examples/msgpack_alt.rs"><code>msgpack_alt.rs</code></a>
+in the crate repo for an example of a parser with no backtracking.</p>
+<h2 id="parser-input"><a class="doc-anchor" href="#parser-input">§</a>Parser Input</h2>
+<p>In <code>pars</code> a parser is defined as a function that accepts a stream of symbols as a
+parameter, and returns either a parse success or parse failure. A stream of
+symbols is generalized by the <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> trait. <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> is very similar to the
+<a href="https://doc.rust-lang.org/1.84.1/core/iter/traits/iterator/trait.Iterator.html" title="trait core::iter::traits::iterator::Iterator"><code>Iterator</code></a> trait in the Rust standard library, but it has some extra
+properties. <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> must also implement <a href="https://doc.rust-lang.org/1.84.1/core/clone/trait.Clone.html" title="trait core::clone::Clone"><code>Clone</code></a>, and it must be possible to
+test whether two <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> objects are at the same stream position. Note that
+for good performance, the <a href="https://doc.rust-lang.org/1.84.1/core/clone/trait.Clone.html" title="trait core::clone::Clone"><code>Clone</code></a> implementation should be cheap, but it is
+not required that it implement <a href="https://doc.rust-lang.org/1.84.1/core/marker/trait.Copy.html" title="trait core::marker::Copy"><code>Copy</code></a>.</p>
+<p><a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> is automatically implemented for slice references, <code>&amp;[T]</code> and <code>&amp;str</code>.
+To illustrate the properties of an <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> consider <code>input: &amp;[u8]</code>. Advancing
+the input is equivalent to <code>input = &amp;input[1..]</code>. Testing that two inputs are
+at the same position is just testing that the underlying pointers are equal,
+<code>input.as_ptr() == other_input.as_ptr()</code>. Also, <code>&amp;[u8]</code> clearly has a cheap
+<a href="https://doc.rust-lang.org/1.84.1/core/clone/trait.Clone.html" title="trait core::clone::Clone"><code>Clone</code></a> implementation.</p>
+<p>See the documentation for <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> for more details.</p>
+<p><code>pars</code> also provides the <a href="trait.IntoInput.html" title="trait pars::IntoInput"><code>IntoInput</code></a> trait, which is similarly analogous to
+the <a href="https://doc.rust-lang.org/1.84.1/core/iter/traits/collect/trait.IntoIterator.html" title="trait core::iter::traits::collect::IntoIterator"><code>IntoIterator</code></a> trait in the Rust standard library. The <a href="trait.Parse.html#tymethod.parse" title="method pars::Parse::parse"><code>Parse::parse</code></a>
+function accepts a value implementing <a href="trait.IntoInput.html" title="trait pars::IntoInput"><code>IntoInput</code></a> instead of <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> for
+the convience of the caller. For example, <a href="https://doc.rust-lang.org/1.84.1/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec"><code>&amp;Vec&lt;u8&gt;</code></a>,
+<a href="https://doc.rust-lang.org/1.84.1/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box"><code>&amp;Box&lt;[u8]&gt;</code></a>, <code>&amp;[u8; N]</code> all implement <a href="https://doc.rust-lang.org/1.84.1/core/iter/traits/collect/trait.IntoIterator.html" title="trait core::iter::traits::collect::IntoIterator"><code>IntoIterator</code></a>
+and will convert to the input type <a href="%5Bu8%5D"><code>&amp;[u8]</code></a>.</p>
+<p>See the documentation for <a href="trait.IntoInput.html" title="trait pars::IntoInput"><code>IntoInput</code></a> for more details.</p>
+<p>Since <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> does not have any constraints on what a “symbol” can be, <code>pars</code>
+can be adapted to consume pretty much any kind of input stream. For example, in
+some cases it might be desirable to build a lexer (or scanner) to interpret the
+source input as a stream of tokens, and parse the token stream with <code>pars</code>
+instead of the source input. Sufficiently complex parsers, such as compiler
+frontends, generally prefer this approach. The lexer just needs to provide an
+interface with a type that implements <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a>. Note that it will usually
+be necessary for the lexer (or whatever the custom input source is) to be
+“multi-pass” in order to support parser backtracking.</p>
+<p>TODO: Include a custom input example.</p>
+<h2 id="defining-a-parser"><a class="doc-anchor" href="#defining-a-parser">§</a>Defining a Parser</h2>
+<p>Most user defined parsers should be implemented as a plain function. Types
+implementing <a href="https://doc.rust-lang.org/1.84.1/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn"><code>Fn(I) -&gt; PResult&lt;T, I, E&gt;</code></a>, where <code>I</code>
+implements <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> and <code>E</code> implements <a href="trait.Error.html" title="trait pars::Error"><code>Error&lt;I&gt;</code></a> automatically implement
+<a href="trait.Parse.html" title="trait pars::Parse"><code>Parse&lt;I, Parsed = T, Error = E&gt;</code></a>. Closures can also be used to
+define a parser inline, but note that occaisionally closures may need some
+type hinting assistance to compile properly as a parser.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>pars::{Input, PResult, Success, bytes::Error, Parse};
+
+<span class="comment">// `my_parser` implements `Parse&lt;I, Parsed = i32, Error = Error&lt;I&gt;&gt;`
+</span><span class="kw">fn </span>my_parser&lt;I: Input&gt;(input: I) -&gt; PResult&lt;i32, I, Error&lt;I&gt;&gt; {
+    Success(<span class="number">42</span>, input).into()
+}</code></pre></div>
+<p>When needed, <a href="trait.Parse.html" title="trait pars::Parse"><code>Parse</code></a> can always be implemented manually.</p>
+<h2 id="defining-a-combinator"><a class="doc-anchor" href="#defining-a-combinator">§</a>Defining a Combinator</h2>
+<p>Occaisionly, there is a need to implement a custom combinator for reuse. The
+simplest way is to define a function returning <a href="trait.Parse.html" title="trait pars::Parse"><code>impl Parse</code></a>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>pars::{basic::array, Input, Parse};
+
+<span class="comment">// Creates a parser that applies `parser` twice and
+// returns the parsed values as an array of length 2.
+</span><span class="kw">const fn </span>twice&lt;I, P&gt;(parser: P)
+    -&gt; <span class="kw">impl </span>Parse&lt;I, Parsed = [P::Parsed; <span class="number">2</span>], Error = P::Error&gt;
+<span class="kw">where
+    </span>I: Input,
+    P: Parse&lt;I&gt;,
+{
+    array(parser)
+}</code></pre></div>
+<p>It is usually necessary for the <a href="trait.Parse.html" title="trait pars::Parse"><code>impl Parse</code></a> return to explicitly define
+the <a href="trait.Parse.html#associatedtype.Parsed" title="associated type pars::Parse::Parsed"><code>Parsed</code></a> and <a href="trait.Parse.html#associatedtype.Error" title="associated type pars::Parse::Error"><code>Error</code></a> associated types, in
+order for type inference to work properly in conjunction with other combinators.</p>
+<h2 id="parsing-errors"><a class="doc-anchor" href="#parsing-errors">§</a>Parsing Errors</h2>
+<p><code>pars</code> does not define a general purpose error for parsing failures. Instead, it
+provides the <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a> trait. Users can define their own parsing error types, and
+<code>pars</code> provides a basic error type for each of the modules
+<a href="./bytes/struct.Error.html"><code>bytes</code></a>, <a href="./ascii/struct.Error.html"><code>ascii</code></a>, and
+<a href="./unicode/struct.Error.html"><code>unicode</code></a>.</p>
+<p>A parsing error, aside from other error information it communicates, contains the
+input position at which the error occurred. The generic parsers and combinators
+defined throughout <code>pars</code> use the interface described by the <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a> trait to
+instantiate an error as needed, also providing where the error occurred. Note
+that the input position described by an <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a> may be different from the input
+position described by a <a href="struct.Failure.html" title="struct pars::Failure"><code>Failure</code></a> within a <a href="type.PResult.html" title="type pars::PResult"><code>PResult</code></a>. The <a href="struct.Failure.html" title="struct pars::Failure"><code>Failure</code></a> always
+describes the remaining input that has not been successfully parsed, but the
+error may have occurred further into the input and caused the parser to
+backtrack.</p>
+<p>An important partner to the <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a> trait is the <a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> trait.
+Essentially, a type implementing <a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> is a parsing error without the
+accompanying input position of the error. Such a type can be combined with an
+input position via the <a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> trait to create an actual error.</p>
+<p>Many combinators defined in <code>pars</code>, particularly those named <code>try_*</code>, require the
+user to provide a function or closure that returns a <a href="https://doc.rust-lang.org/1.84.1/core/result/enum.Result.html" title="enum core::result::Result"><code>Result</code></a>. The <code>Err</code>
+variant of that <a href="https://doc.rust-lang.org/1.84.1/core/result/enum.Result.html" title="enum core::result::Result"><code>Result</code></a> must be convertible to an <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a> via <a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a>.
+The reason for this is combinators generally abstract away the input stream,
+letting the user focus more on how parsers fit together and produce a parsed
+value. When some intermediate operation is fallible, being able to return an
+<a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> simplifies matters by letting the combinator implementation deal
+with tracking input positions.</p>
+<p>A typical user defined error will be defined as a pair of types: One implementing
+<a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> and another implementing <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="kw">struct </span>MyErrorKind(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str);
+
+<span class="attr">#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+</span><span class="kw">struct </span>MyError&lt;I: Input&gt; {
+    msg: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str,
+    pos: I,
+}
+
+<span class="kw">impl</span>&lt;I: Input&gt; ErrorSeed&lt;I, MyError&lt;I&gt;&gt; <span class="kw">for </span>MyErrorKind {
+    <span class="kw">fn </span>into_error(<span class="self">self</span>, pos: I) -&gt; MyError&lt;I&gt; {
+        MyError {
+            msg: <span class="self">self</span>.<span class="number">0</span>,
+            pos,
+        }
+    }
+}
+
+<span class="kw">impl</span>&lt;I: Input&gt; Error&lt;I&gt; <span class="kw">for </span>MyError&lt;I&gt; {
+    <span class="kw">fn </span>need_more_input(pos: I) -&gt; <span class="self">Self </span>{
+        MyErrorKind(<span class="string">"need more input"</span>).into_error(pos)
+    }
+
+    <span class="kw">fn </span>expected_eof(pos: I) -&gt; <span class="self">Self </span>{
+        MyErrorKind(<span class="string">"expected end of input"</span>).into_error(pos)
+    }
+
+    <span class="kw">fn </span>invalid_input(pos: I) -&gt; <span class="self">Self </span>{
+        MyErrorKind(<span class="string">"invalid input"</span>).into_error(pos)
+    }
+
+    <span class="kw">fn </span>position(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>I { <span class="kw-2">&amp;</span><span class="self">self</span>.pos }
+}</code></pre></div>
+<p>For convenience, <a href="enum.ErrorKind.html" title="enum pars::ErrorKind"><code>ErrorKind</code></a> is available for use as an <a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> type that
+can be converted to any type implementing <a href="trait.Error.html" title="trait pars::Error"><code>Error</code></a>.</p>
+<p>When combining a user defined error with parsers that use a different error type,
+such as <a href="./bytes/fn.u8.html"><code>bytes::u8</code></a>, there are a few ways this can be dealt with.
+The simplest way is to use <a href="trait.Parse.html#method.err_into" title="method pars::Parse::err_into"><code>Parse::err_into</code></a>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="comment">// Given `MyError` defined previously.
+</span><span class="kw">impl</span>&lt;I: Input&gt; From&lt;bytes::Error&lt;I&gt;&gt; <span class="kw">for </span>MyError&lt;I&gt; {
+    <span class="kw">fn </span>from(err: bytes::Error&lt;I&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span>err.kind() {
+            bytes::ErrorKind::NeedMoreInput =&gt; <span class="self">Self</span>::need_more_input(err.position().clone()),
+            bytes::ErrorKind::ExpectedEof =&gt; <span class="self">Self</span>::expected_eof(err.position().clone()),
+            <span class="kw">_ </span>=&gt; <span class="self">Self</span>::invalid_input(err.position().clone()),
+        }
+    }
+}
+
+<span class="kw">fn </span>my_u8&lt;I: bytes::ByteInput&gt;(input: I) -&gt; PResult&lt;u8, I, MyError&lt;I&gt;&gt; {
+    <span class="comment">// Changes `bytes::u8` to return `MyError` instead of `bytes::Error`
+    </span>bytes::u8.err_into().parse(input)
+}</code></pre></div>
+<p>When relying on a <a href="https://doc.rust-lang.org/1.84.1/core/convert/trait.From.html" title="trait core::convert::From"><code>From</code></a> implementation doesn’t work <a href="trait.Parse.html#method.map_err" title="method pars::Parse::map_err"><code>Parse::map_err</code></a> and
+<a href="trait.Parse.html#method.map_res" title="method pars::Parse::map_res"><code>Parse::map_res</code></a> are also available to define error conversions separately for each
+instance.</p>
+<h2 id="features"><a class="doc-anchor" href="#features">§</a>Features</h2>
+<p>Note that there is no <code>std</code> feature, since <code>pars</code> never makes use of types that are
+only available in <code>std</code>.</p>
+<ul>
+<li><code>alloc</code> - Enable usage of the <a href="https://doc.rust-lang.org/1.84.1/alloc/index.html" title="mod alloc"><code>alloc</code></a> crate. This enables <a href="trait.IntoInput.html" title="trait pars::IntoInput"><code>IntoInput</code></a> impls
+for types such as <a href="https://doc.rust-lang.org/1.84.1/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec"><code>&amp;Vec&lt;[T]&gt;</code></a> and
+<a href="https://doc.rust-lang.org/1.84.1/alloc/string/struct.String.html" title="struct alloc::string::String"><code>&amp;String</code></a>. Enabled by default.</li>
+<li><code>bytes</code> - Enable the <a href="./bytes"><code>bytes</code></a> module, which provides parsers and utilities
+for byte streams.</li>
+<li><code>unicode</code> - Enable the <a href="./unicode"><code>unicode</code></a> module, which provides parsers and
+utilities for UTF-8, UTF-16, and UTF-32 streams.</li>
+<li><code>ascii</code> - Enable the <a href="./ascii"><code>ascii</code></a> module, which provides parsers and utilities
+for ASCII character streams.</li>
+</ul>
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="ascii/index.html" title="mod pars::ascii">ascii</a></div></li><li><div class="item-name"><a class="mod" href="basic/index.html" title="mod pars::basic">basic</a></div><div class="desc docblock-short">Generic parser and combinator building blocks.</div></li><li><div class="item-name"><a class="mod" href="bytes/index.html" title="mod pars::bytes">bytes</a></div></li><li><div class="item-name"><a class="mod" href="prelude/index.html" title="mod pars::prelude">prelude</a></div><div class="desc docblock-short">The <code>pars</code> prelude.</div></li><li><div class="item-name"><a class="mod" href="unicode/index.html" title="mod pars::unicode">unicode</a></div></li></ul><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Failure.html" title="struct pars::Failure">Failure</a></div><div class="desc docblock-short">Type returned by a parser when parsing fails.</div></li><li><div class="item-name"><a class="struct" href="struct.ParsedInput.html" title="struct pars::ParsedInput">Parsed<wbr>Input</a></div><div class="desc docblock-short">Input derived from other input by repeatedly applying a parser.</div></li><li><div class="item-name"><a class="struct" href="struct.Span.html" title="struct pars::Span">Span</a></div><div class="desc docblock-short">A slice of parser input.</div></li><li><div class="item-name"><a class="struct" href="struct.Success.html" title="struct pars::Success">Success</a></div><div class="desc docblock-short">Type returned by a parser when parsing succeeds.</div></li></ul><h2 id="enums" class="section-header">Enums<a href="#enums" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.ErrorKind.html" title="enum pars::ErrorKind">Error<wbr>Kind</a></div><div class="desc docblock-short">A type implementing <a href="trait.ErrorSeed.html" title="trait pars::ErrorSeed"><code>ErrorSeed</code></a> for all error and input types.</div></li></ul><h2 id="traits" class="section-header">Traits<a href="#traits" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="trait" href="trait.Error.html" title="trait pars::Error">Error</a></div><div class="desc docblock-short">A parsing error.</div></li><li><div class="item-name"><a class="trait" href="trait.ErrorSeed.html" title="trait pars::ErrorSeed">Error<wbr>Seed</a></div><div class="desc docblock-short">A parsing error descriptor that can be used to build a parsing error.</div></li><li><div class="item-name"><a class="trait" href="trait.Input.html" title="trait pars::Input">Input</a></div><div class="desc docblock-short">A parsable symbol stream.</div></li><li><div class="item-name"><a class="trait" href="trait.IntoInput.html" title="trait pars::IntoInput">Into<wbr>Input</a></div><div class="desc docblock-short">Trait for types that can be directly converted into an <a href="trait.Input.html" title="trait pars::Input"><code>Input</code></a> type.</div></li><li><div class="item-name"><a class="trait" href="trait.PResultExt.html" title="trait pars::PResultExt">PResult<wbr>Ext</a></div><div class="desc docblock-short">Additional convenience methods for <a href="type.PResult.html" title="type pars::PResult"><code>PResult</code></a>.</div></li><li><div class="item-name"><a class="trait" href="trait.Parse.html" title="trait pars::Parse">Parse</a></div><div class="desc docblock-short">Trait implemented by all parsers.</div></li></ul><h2 id="types" class="section-header">Type Aliases<a href="#types" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="type" href="type.PResult.html" title="type pars::PResult">PResult</a></div><div class="desc docblock-short">The <a href="https://doc.rust-lang.org/1.84.1/core/result/enum.Result.html" title="enum core::result::Result"><code>Result</code></a> type returned by a parser.</div></li></ul></section></div></main></body></html>

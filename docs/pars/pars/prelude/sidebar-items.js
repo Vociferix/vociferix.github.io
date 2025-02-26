@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"macro":["alt","permutation","seq"]};
