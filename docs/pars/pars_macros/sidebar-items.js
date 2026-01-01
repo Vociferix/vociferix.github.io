@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"macro":["alt","ascii","permutation","regex_ascii_lossy","regex_ascii_strict","regex_bytes","regex_unicode_lossy","regex_unicode_strict","seq"]};
